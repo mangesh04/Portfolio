@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "hw";
+  src: url("./assets/fonts/Bellarina.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-hw: hw, sans-serif;
+}
+
+@font-face {
+  font-family: "hw2";
+  src: url("./assets/fonts/Joyline\ Notes.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-hw2: hw2, sans-serif;
+}
