@@ -32,10 +32,10 @@ function App() {
 
         <CursorTrail />
         <Intro y={y} />
-        {/* <NonInteractive y={y} /> */}
+        <NonInteractive y={y} />
         <ScreenDevice y={y} />
-        {/* <Notes y={y} />
-        <Laptop y={y} /> */}
+        <Notes y={y} />
+        <Laptop y={y} />
 
       </div>
     </>
