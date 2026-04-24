@@ -1,4 +1,4 @@
-import { motion, useTransform, useMotionTemplate, easeInOut, useSpring } from 'motion/react';
+import { motion, useTransform, useMotionTemplate, easeInOut, useSpring, m } from 'motion/react';
 import tablet from './assets/tablet2.png';
 import { useState, useEffect } from 'react';
 import { FaReact, FaNodeJs, FaPython, FaGitAlt, FaGithub, FaDatabase } from 'react-icons/fa'
@@ -54,26 +54,9 @@ function SkillIcon({ Icon, color, bg, name }) {
     )
 }
 
-// Hook defined outside the component
-function useViewport() {
-    const [viewport, setViewport] = useState({
-        vw: window.innerWidth,
-        vh: window.innerHeight
-    })
-
-    useEffect(() => {
-        const handleResize = () => setViewport({
-            vw: window.innerWidth,
-            vh: window.innerHeight
-        })
-        window.addEventListener('resize', handleResize)
-        return () => window.removeEventListener('resize', handleResize)
-    }, [])
-
-    return viewport
-}
 
 export default function ScreenDevice({ y }) {
+
     const entryStart = 0
     const entryEnd = 200
     const scaleStart = 200
@@ -87,56 +70,45 @@ export default function ScreenDevice({ y }) {
     const mobileScaleTrack = [scaleStart, scaleEnd, dScaleStart, dScaleEnd]
     const springConfig = { stiffness: 80, damping: 20, mass: 1 }
 
-    const { vw, vh } = useViewport()
+    const rawX = useTransform(y, mobileTrack, [600, 0, 0, 600])
+    const rawY = useTransform(y, mobileTrack, [-300, 0, 0, -400])
 
-    // Breakpoint helpers (no Tailwind needed)
-    const isSm = vw >= 640
-    const isMd = vw >= 768
-    const isLg = vw >= 1024
+    const mobileX = useSpring(rawX, springConfig)
+    const mobileY = useSpring(rawY, springConfig)
 
-    // Dynamic right offset: large screens push device further right
-    // lg: ~20% vw, md: ~10% vw, sm: ~5% vw, xs: 0
-    const rightOffset = isLg ? vw * 0.20 : isMd ? vw * 0.10 : isSm ? vw * 0.05 : 0
-
-    // Dynamic top offset: slight negative offset, scales with vh
-    const topOffset = vh * -0.04  // ~-4% of viewport height
-
-    const mobileX = useSpring(
-        useTransform(y, mobileTrack, [0, -vw * 0.25, -vw * 0.25, -vw * 0.1]),
-        springConfig
-    )
-    const mobileY = useSpring(
-        useTransform(y, mobileTrack, [0, vh * 0.65, vh * 0.65, -vh * 0.25]),
-        springConfig
-    )
     const mobileRotate = useSpring(
-        useTransform(y, mobileTrack, [0, -135, -135, -145]),
+        useTransform(y, mobileTrack, [50, -90, -90, -120]),
         springConfig
     )
+
     const mobileScale = useSpring(
-        useTransform(y, mobileScaleTrack, [vw * 0.001, vw * 0.005, vw * 0.005, vw * 0.001]),
+        useTransform(y, mobileScaleTrack, [1, 2, 2, 1]),
         springConfig
     )
 
     return (
         <motion.div
-            className='absolute w-60 h-90 flex items-center justify-center rotate-45 drop-shadow-[5px_3px_10px_rgba(0,0,0,0.3)] z-1'
+            className='absolute w-60 h-90 flex items-center justify-center  drop-shadow-[5px_3px_10px_rgba(0,0,0,0.3)] z-1 '
+
             style={{
-                // Replace Tailwind breakpoint classes with dynamic inline values
-                top: topOffset,
-                right: rightOffset,
+
+                top: '50%',
+                left: '50%',
+                translate: '-50% -50%',
                 x: mobileX,
                 y: mobileY,
-                rotate: mobileRotate,
                 scale: mobileScale,
+                rotate: mobileRotate,
             }}
             transition={{ ease: easeInOut }}
         >
             <img src={tablet} alt="tablet" className='w-full h-full' />
 
             <div className='absolute text-black w-101 h-104 flex rounded-xl items-center justify-center'>
+
                 <div className='absolute rounded-xl h-50 w-75 rotate-90 overflow-hidden'
                     style={{ background: '#141414' }}>
+
                     <div className='w-full h-full flex flex-col px-3 py-2 gap-[6px]'>
                         <div className='flex items-center gap-1 mb-[2px]'>
                             <span style={{ fontSize: 7, fontWeight: 600, color: '#ffffff', letterSpacing: '0.04em' }}>
