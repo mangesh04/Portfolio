@@ -53,7 +53,6 @@ export default function laptop({ y }) {
     const laptopScaleUpEnd = 2000
     // stop all movments after 2000
 
-
     const laptopTrack = [laptopRedyStart, laptopRedyEnd, laptopEntryStart, laptopEntryEnd];
 
     const laptopRotateTrack = [laptopRedyStart, laptopEntryStart];
@@ -62,11 +61,13 @@ export default function laptop({ y }) {
 
     const springConfig = { stiffness: 80, damping: 20, mass: 1 }
 
-    const laptopX = useSpring(useTransform(y, laptopTrack, [0, 100, 100, 550]), springConfig)
-    const laptopY = useSpring(useTransform(y, laptopTrack, [0, 200, 150, -450]), springConfig)
-    const laptopRotate = useSpring(useTransform(y, laptopRotateTrack, [0, -30]), springConfig)
+    const laptopX = useSpring(useTransform(y, laptopTrack, [-600, -500, 0, -600]), springConfig)
+    const laptopY = useSpring(useTransform(y, laptopTrack, [300, 200, 0, 300]), springConfig)
+    const laptopRotate = useSpring(useTransform(y, laptopRotateTrack, [-20, 0]), springConfig)
     const laptopScale = useSpring(useTransform(y, laptopScaleTrack, [1, 1.5]), springConfig)
     const zIndex = useTransform(laptopX, (value) => (value > 100 ? 1 : 0));
+
+
 
     const logos = {
         github: { src: githubLogo, alt: "GitHub", rotation: 10, top: 3, left: 5, href: "https://github.com" },
@@ -82,7 +83,11 @@ export default function laptop({ y }) {
 
     return (
 
-        <motion.div className={`relative w-140 h-170 flex items-center justify-center overflow-hidden  -left-70 -top-30 rotate-30 drop-shadow-[2px_10px_5px_rgba(0,0,0,0.2)]`} style={{
+        <motion.div className={`absolute w-140 h-170 flex items-center justify-center overflow-hidden drop-shadow-[2px_10px_5px_rgba(0,0,0,0.2)]`} style={{
+
+            top: '50%',
+            left: '50%',
+            translate: '-50% -50%',
             x: laptopX,
             y: laptopY,
             rotate: laptopRotate,

@@ -7,7 +7,9 @@ import ScreenDevice from './ScreenDevice'
 import Notes from './Notes'
 import CursorTrail from './CursorTrail'
 import Laptop from './Laptop'
-
+import Keyboard from './keyboard'
+import ReverseGame from './ReverseGameOfLife'
+import ChromeAIChat from './ChromeAIChat';
 
 function App() {
 
@@ -59,15 +61,15 @@ function App() {
 
   return (
     <>
+      {/* <ReverseGame text="Veer" /> */}
       <div className='mainContainer bg-[#f5f3f0] h-screen p-20 relative overflow-hidden overscroll-none touch-none'>
-
         <CursorTrail />
         <Intro y={y} />
         <NonInteractive y={y} />
         <ScreenDevice y={y} />
         <Notes y={y} />
         <Laptop y={y} />
-
+        <Keyboard y={y} />
       </div>
     </>
   )

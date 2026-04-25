@@ -1,5 +1,5 @@
 import React from 'react'
-import { motion, useTransform,useSpring } from 'motion/react';
+import { motion, useTransform, useSpring } from 'motion/react';
 import keyboard from './assets/keyboard.png'
 import mouse from './assets/mouse.png'
 import pencil from './assets/pencil.png'
@@ -7,36 +7,24 @@ import headphone from './assets/headphone.png'
 
 export default function NonInteractive({ y }) {
 
-    const keyboardTrack = [100, 300];
-    const keyboardRotateTrack = [550, 600,800,900];
-    const mouseTrack = [300, 500];
-    const headphoneTrack = [400, 500];
-    const pencilTrack = [400, 500];
+    // const mouseTrack = [300, 500];
+    // const headphoneTrack = [400, 500];
+    // const pencilTrack = [400, 500];
 
-    const springConfig = { stiffness: 80, damping: 20, mass: 1 }
 
-    const keyboardX =useSpring( useTransform(y, keyboardTrack, [0, -40 ]), springConfig)   // slide left
-    const keyboardY = useSpring(useTransform(y, keyboardTrack, [0, 300]), springConfig)
-    const keyboardRotate = useSpring(useTransform(y, keyboardRotateTrack, [0, 20,20,-20]), springConfig) // rotate into place
+    // const mouseX = useSpring(useTransform(y, mouseTrack, [0, -240]), springConfig)
+    // const mouseY = useSpring(useTransform(y, mouseTrack, [0, -100]), springConfig)
 
-    const mouseX = useSpring(useTransform(y, mouseTrack, [0, -240]), springConfig)
-    const mouseY = useSpring(useTransform(y, mouseTrack, [0, -100]), springConfig)
+    // const headphoneX = useSpring(useTransform(y, headphoneTrack, [0, -120]), springConfig)
+    // const headphoneY = useSpring(useTransform(y, headphoneTrack, [0, -100]), springConfig)
 
-    const headphoneX = useSpring(useTransform(y, headphoneTrack, [0, -120]), springConfig)
-    const headphoneY = useSpring(useTransform(y, headphoneTrack, [0, -100]), springConfig)
-
-    const pencilX = useSpring(useTransform(y, pencilTrack, [0, -120]), springConfig)
-    const pencilY = useSpring(useTransform(y, pencilTrack, [0, 100]), springConfig)
+    // const pencilX = useSpring(useTransform(y, pencilTrack, [0, -120]), springConfig)
+    // const pencilY = useSpring(useTransform(y, pencilTrack, [0, 100]), springConfig)
 
 
     return (
         <>
 
-            <motion.img src={keyboard} alt="keyboard" className='absolute w-3xl bottom-10  left-2/8 rotate-6 drop-shadow-[6px_10px_15px_rgba(0,0,0,0.3)] ' style={{
-                x: keyboardX,
-                y: keyboardY,
-                rotate: keyboardRotate
-            }} />
 
             <motion.img src={mouse} alt="mouse" className='absolute w-140 -top-40 left-50 -rotate-20 drop-shadow-[7px_-7px_15px_rgba(0,0,0,0.3)]' style={{
                 // x: mouseX,

@@ -77,7 +77,7 @@ export default function ScreenDevice({ y }) {
     const mobileY = useSpring(rawY, springConfig)
 
     const mobileRotate = useSpring(
-        useTransform(y, mobileTrack, [50, -90, -90, -120]),
+        useTransform(y, mobileTrack, [120, 0, 0, 120]),
         springConfig
     )
 
@@ -88,10 +88,11 @@ export default function ScreenDevice({ y }) {
 
     return (
         <motion.div
-            className='absolute w-60 h-90 flex items-center justify-center  drop-shadow-[5px_3px_10px_rgba(0,0,0,0.3)] z-1 '
+            className='absolute flex items-center justify-center  drop-shadow-[5px_3px_10px_rgba(0,0,0,0.3)] z-1 '
 
             style={{
-
+                height: '20vw',
+                width: '30vw',
                 top: '50%',
                 left: '50%',
                 translate: '-50% -50%',
@@ -104,12 +105,13 @@ export default function ScreenDevice({ y }) {
         >
             <img src={tablet} alt="tablet" className='w-full h-full' />
 
-            <div className='absolute text-black w-101 h-104 flex rounded-xl items-center justify-center'>
+            <div className='absolute text-black w-full h-full flex rounded-xl items-center justify-center'>
 
-                <div className='absolute rounded-xl h-50 w-75 rotate-90 overflow-hidden'
-                    style={{ background: '#141414' }}>
+                <div className='relative rounded-xl  overflow-hidden'
+                    style={{ background: '#141414',height: '90%' , width:'90%' }}>
 
                     <div className='w-full h-full flex flex-col px-3 py-2 gap-[6px]'>
+
                         <div className='flex items-center gap-1 mb-[2px]'>
                             <span style={{ fontSize: 7, fontWeight: 600, color: '#ffffff', letterSpacing: '0.04em' }}>
                                 My Skills
@@ -119,10 +121,11 @@ export default function ScreenDevice({ y }) {
 
                         {sections.map((section) => (
                             <div key={section.label}>
+
                                 <p style={{ fontSize: 4.5, color: '#555', marginBottom: 3, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                                     {section.label}
                                 </p>
-                                <div className='flex flex-row gap-2 flex-wrap'>
+                                <div className='flex flex-row gap-2 flex-wrap '>
                                     {section.icons.map(({ Icon, color, bg, name }) => (
                                         <SkillIcon key={name} Icon={Icon} color={color} bg={bg} name={name} />
                                     ))}

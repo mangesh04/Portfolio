@@ -221,12 +221,12 @@ function ProjectCard({ project }) {
 export default function Notes({ y }) {
 
   // backingUp(borrowed) -> stays -> enters -> scalesUp -> stays -> exits
+
   // borrowed: 200 -> 400  |  budget: 700 -> 1500
 
   // --- borrowed phase ---
   const notesBackStart = 200
   const notesBackEnd = 400
-
 
 
   // --- entry ---
@@ -253,15 +253,29 @@ export default function Notes({ y }) {
 
   const springConfig = { stiffness: 80, damping: 20, mass: 1 }
 
-  const notesX = useSpring(useTransform(y, notesTrack, [0, -120, -120, -500, -500, -120]), springConfig)
-  const notesY = useSpring(useTransform(y, notesTrack, [0, 250, 200, -400, -400, 200]), springConfig)
-  const notesRotate = useSpring(useTransform(y, notesTrack, [0, -10, -10, -70, -70, -10]), springConfig)
-  const notesScale = useSpring(useTransform(y, notesScaleTrack, [1, 2, 2, 1.2]), springConfig)
+  const notesX = useSpring(useTransform(y, notesTrack, [600, 700, 700, 0, 0, 600]), springConfig)
+
+  const notesY = useSpring(useTransform(y, notesTrack, [300, 500, 400, 0, 0, 300]), springConfig)
+
+  const notesRotate = useSpring(useTransform(y, notesTrack, [-25, -40, -60, -90, -90, -25]), springConfig)
+
+  const notesScale = useSpring(useTransform(y, notesScaleTrack, [1, 2, 2, 1]), springConfig)
 
   return (
     <motion.div
-      className='absolute h-120 w-100 -right-15 -bottom-10 drop-shadow-[6px_10px_15px_rgba(0,0,0,0.3)] -rotate-20 z-1'
-      style={{ x: notesX, y: notesY, rotate: notesRotate, scale: notesScale }}
+      className='absolute h-120 w-100  drop-shadow-[6px_10px_15px_rgba(0,0,0,0.3)] z-1'
+
+      style=
+      {{
+
+        top: '50%',
+        left: '50%',
+        translate: '-50% -50%',
+        x: notesX,
+        y: notesY,
+        rotate: notesRotate,
+        scale: notesScale
+      }}
     >
       <img src={notes2} alt="notes" className='w-full h-full object-cover absolute inset-0' />
 
