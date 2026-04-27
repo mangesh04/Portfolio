@@ -80,12 +80,12 @@ function SetCardImage({ image, name, rotation }) {
       flexShrink: 0,
       transform: `rotate(${rotation}deg)`
     }}>
-      {/* <img
+      <img
         src={cardImage}
         alt=""
         style={{ width: '100%', display: 'block', position: 'relative', zIndex: 0 }}
-      /> */}
-      {/* <img
+      />
+      <img
         src={image}
         alt=""
         style={{
@@ -96,8 +96,8 @@ function SetCardImage({ image, name, rotation }) {
           objectFit: 'cover',
           zIndex: 1,
         }}
-      /> */}
-      <span className='absolute text-sm top-17 w-27 flex items-center justify-center font-hw2'>
+      />
+      <span className='absolute text-[50%] top-[80%] left-[10%] font-hw2'>
         {name}
       </span>
     </div>
@@ -166,8 +166,8 @@ function ProjectCard({ project }) {
   return (
 
     <div
-      className='relative'
-      style={{ width: '10vw', height: '10vh', flexShrink: 0 }}
+      className='relative m-0'
+      style={{ width: '110%', flexShrink: 0 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -193,7 +193,6 @@ function ProjectCard({ project }) {
             left: 8,
             right: 8,
             bottom: 8,
-            padding: '10px',
             background: 'transparent',
             zIndex: 1,
             display: 'flex',
@@ -253,6 +252,7 @@ export default function Notes({ y }) {
   const notesY = useSpring(useTransform(y, notesTrack, [300, 500, 400, 0, 0, 300]), springConfig)
 
   const notesRotate = useSpring(useTransform(y, notesTrack, [65, 50, 40, 0, 0, 65]), springConfig)
+
   const notesScale = useSpring(useTransform(y, notesScaleTrack, [0.8, 1.5, 1.5, 0.6]), springConfig)
 
   return (
@@ -273,29 +273,25 @@ export default function Notes({ y }) {
     >
       <img src={notes2} alt="notes" className='w-full h-full object-cover absolute inset-0' />
 
-      <div className='absolute inset-0 flex items-center justify-center overflow-visible'>
+      <div className='absolute inset-0 flex flex-col items-center justify-center overflow-visible'>
 
-        <div className='absolute rotate-90 right-10 bottom-1/2 font-hw2 text-2xl font-bold opacity-70'>
+        <div className='font-hw2 relative  font-bold opacity-70'  >
           Projects
         </div>
 
         <div
           style={{
-            height: '100%',
-            width: '100%',
-            transform: 'rotate(90deg)',
+            height: '60%',
+            width: '80%',
             display: 'grid',
             gridTemplateColumns: `repeat(3, ${30}%)`,
-            gap: 12,
+            gap: '5%',
             padding: '6px 4px',
             overflow: 'visible',
           }}
         >
           {projects.map(project => (
-            <div key={project.name} style={{ position: 'relative', width: '50', height: '50', flexShrink: 0, border: '1px solid red' }}>
-
-            </div>
-            // <ProjectCard key={project.name} project={project} />
+            <ProjectCard key={project.name} project={project} />
           ))}
         </div>
       </div>
