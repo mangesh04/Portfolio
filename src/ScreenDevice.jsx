@@ -37,23 +37,28 @@ const sections = [
 function SkillIcon({ Icon, color, bg, name }) {
     return (
         <motion.div
-            className='flex flex-col items-center gap-[2px] cursor-pointer'
+            className='flex flex-col items-center cursor-pointer'
+            style={{ gap: '0.25em' }}
             whileHover={{ scale: 1.25, y: -2 }}
             transition={{ type: 'spring', stiffness: 400, damping: 15 }}
         >
             <div
                 className='flex items-center justify-center rounded-[5px] transition-shadow duration-200'
-                style={{ width: 22, height: 22, background: bg, boxShadow: `0 0 0px ${color}` }}
+                style={{
+                    width: '1.8em',
+                    height: '1.8em',
+                    background: bg,
+                    boxShadow: `0 0 0px ${color}`
+                }}
                 onMouseEnter={e => e.currentTarget.style.boxShadow = `0 0 6px 1px ${color}88`}
                 onMouseLeave={e => e.currentTarget.style.boxShadow = `0 0 0px ${color}`}
             >
-                <Icon size={13} color={color} />
+                <Icon style={{ width: '1.1em', height: '1.1em' }} color={color} />
             </div>
-            <span style={{ fontSize: 4.5, color: '#888', lineHeight: 1 }}>{name}</span>
+            <span style={{ fontSize: '0.45em', color: '#888', lineHeight: 1 }}>{name}</span>
         </motion.div>
     )
 }
-
 
 export default function ScreenDevice({ y }) {
 
@@ -108,30 +113,30 @@ export default function ScreenDevice({ y }) {
             <div className='absolute text-black w-full h-full flex rounded-xl items-center justify-center'>
 
                 <div className='relative rounded-xl  overflow-hidden'
-                    style={{ background: '#141414',height: '90%' , width:'90%' }}>
-
-                    <div className='w-full h-full flex flex-col px-3 py-2 gap-[6px]'>
-
-                        <div className='flex items-center gap-1 mb-[2px]'>
-                            <span style={{ fontSize: 7, fontWeight: 600, color: '#ffffff', letterSpacing: '0.04em' }}>
+                    style={{ background: '#141414', height: '90%', width: '90%' }}>
+                    <div className='w-full h-full flex flex-col px-3 py-2 gap-[6px]'
+                        style={{ fontSize: '1vw' }}
+                        // {/* ← this is the key: base font size scales with viewport */}
+                    >
+                        <div className='flex items-center gap-1 mb-[0.2em]'>
+                            <span style={{ fontSize: '0.5em', fontWeight: 600, color: '#ffffff', letterSpacing: '0.04em' }}>
                                 My Skills
                             </span>
-                            <div style={{ flex: 1, height: 0.5, background: '#333', marginLeft: 3 }} />
+                            <div style={{ flex: 1, height: '0.05em', background: '#333', marginLeft: '0.3em' }} />
                         </div>
 
                         {sections.map((section) => (
                             <div key={section.label}>
-
-                                <p style={{ fontSize: 4.5, color: '#555', marginBottom: 3, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                                <p style={{ fontSize: '0.35em', color: '#555', marginBottom: '0.4em', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                                     {section.label}
                                 </p>
-                                <div className='flex flex-row gap-2 flex-wrap '>
+                                <div className='flex flex-row flex-wrap' style={{ gap: '0.4em' }}>
                                     {section.icons.map(({ Icon, color, bg, name }) => (
                                         <SkillIcon key={name} Icon={Icon} color={color} bg={bg} name={name} />
                                     ))}
                                 </div>
                                 {section.label !== 'Tools' && (
-                                    <div style={{ height: 0.5, background: '#222', margin: '4px 0 0' }} />
+                                    <div style={{ height: '0.05em', background: '#222', margin: '0.4em 0 0' }} />
                                 )}
                             </div>
                         ))}

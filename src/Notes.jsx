@@ -67,7 +67,7 @@ const statusColor = {
   'abandoned lol': { bg: 'bg-red-100', text: 'text-red-700', dot: 'bg-red-400' },
 }
 
-const CARD_W = 130
+const CARD_W = Math.min(130, window.innerWidth * 0.2)
 
 function SetCardImage({ image, name, rotation }) {
 
@@ -80,23 +80,23 @@ function SetCardImage({ image, name, rotation }) {
       flexShrink: 0,
       transform: `rotate(${rotation}deg)`
     }}>
-      <img
+      {/* <img
         src={cardImage}
         alt=""
         style={{ width: '100%', display: 'block', position: 'relative', zIndex: 0 }}
-      />
-      <img
+      /> */}
+      {/* <img
         src={image}
         alt=""
         style={{
           position: 'absolute',
-          top: '15px',
-          left: '8px',
+          top: '15%',
+          left: '8%',
           width: '86%',
           objectFit: 'cover',
           zIndex: 1,
         }}
-      />
+      /> */}
       <span className='absolute text-sm top-17 w-27 flex items-center justify-center font-hw2'>
         {name}
       </span>
@@ -164,12 +164,14 @@ function ProjectCard({ project }) {
   const rotation = useMemo(() => (Math.random() * 6 - 3).toFixed(2), [])
 
   return (
+
     <div
       className='relative'
-      style={{ width: CARD_W, height: '120px', flexShrink: 0 }}
+      style={{ width: '10vw', height: '10vh', flexShrink: 0 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+
       {/* polaroid — straightens + floats on hover */}
       <motion.div
         className='font-hw2 text-3xl w-full h-full'
@@ -201,9 +203,13 @@ function ProjectCard({ project }) {
           }}
         >
           <SetCardImage image={project.image} name={project.name} rotation={0} />
+
         </div>
+
       </motion.div>
 
+
+      {/* popup div */}
       {hovered && (
         <motion.div
           className='absolute top-0 left-full ml-3 z-50'
@@ -212,69 +218,57 @@ function ProjectCard({ project }) {
           transition={{ duration: 0.18 }}
         >
           <Popup project={project} />
+
         </motion.div>
       )}
     </div>
   )
 }
 
+
+
 export default function Notes({ y }) {
 
-  // backingUp(borrowed) -> stays -> enters -> scalesUp -> stays -> exits
-
-  // borrowed: 200 -> 400  |  budget: 700 -> 1500
-
-  // --- borrowed phase ---
   const notesBackStart = 200
   const notesBackEnd = 400
 
-
-  // --- entry ---
   const notesEntryStart = 700
   const notesEntryEnd = 900
 
-  // --- scaleUp ---
-  const notesScaleUpStart = 1000  // starts mid-entry
+  const notesScaleUpStart = 1000
   const notesScaleUpEnd = 1200
 
-  // 1200-1300 nothing
-
-  const notesDScaleUpStart = 1300  // starts mid-entry
+  const notesDScaleUpStart = 1300
   const notesDScaleUpEnd = 1500
 
-  // --- exit ---
   const notesExitStart = 1500
   const notesExitEnd = 1700
 
-  // --- tracks ---
   const notesTrack = [notesBackStart, notesBackEnd, notesEntryStart, notesEntryEnd, notesExitStart, notesExitEnd]
-
   const notesScaleTrack = [notesScaleUpStart, notesScaleUpEnd, notesDScaleUpStart, notesDScaleUpEnd]
 
   const springConfig = { stiffness: 80, damping: 20, mass: 1 }
 
   const notesX = useSpring(useTransform(y, notesTrack, [600, 700, 700, 0, 0, 600]), springConfig)
-
   const notesY = useSpring(useTransform(y, notesTrack, [300, 500, 400, 0, 0, 300]), springConfig)
 
-  const notesRotate = useSpring(useTransform(y, notesTrack, [-25, -40, -60, -90, -90, -25]), springConfig)
-
-  const notesScale = useSpring(useTransform(y, notesScaleTrack, [1, 2, 2, 1]), springConfig)
+  const notesRotate = useSpring(useTransform(y, notesTrack, [65, 50, 40, 0, 0, 65]), springConfig)
+  const notesScale = useSpring(useTransform(y, notesScaleTrack, [0.8, 1.5, 1.5, 0.6]), springConfig)
 
   return (
     <motion.div
-      className='absolute h-120 w-100  drop-shadow-[6px_10px_15px_rgba(0,0,0,0.3)] z-1'
-
-      style=
-      {{
-
+      className='absolute drop-shadow-[6px_10px_15px_rgba(0,0,0,0.3)] z-1'
+      style={{
+        height: '30vw',
+        width: '35vw',
+        maxHeight: '90vh',
         top: '50%',
         left: '50%',
         translate: '-50% -50%',
         x: notesX,
         y: notesY,
         rotate: notesRotate,
-        scale: notesScale
+        scale: notesScale,
       }}
     >
       <img src={notes2} alt="notes" className='w-full h-full object-cover absolute inset-0' />
@@ -287,16 +281,21 @@ export default function Notes({ y }) {
 
         <div
           style={{
+            height: '100%',
+            width: '100%',
             transform: 'rotate(90deg)',
             display: 'grid',
-            gridTemplateColumns: `repeat(3, ${CARD_W}px)`,
+            gridTemplateColumns: `repeat(3, ${30}%)`,
             gap: 12,
             padding: '6px 4px',
             overflow: 'visible',
           }}
         >
           {projects.map(project => (
-            <ProjectCard key={project.name} project={project} />
+            <div key={project.name} style={{ position: 'relative', width: '50', height: '50', flexShrink: 0, border: '1px solid red' }}>
+
+            </div>
+            // <ProjectCard key={project.name} project={project} />
           ))}
         </div>
       </div>
