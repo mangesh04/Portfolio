@@ -35,6 +35,8 @@ const sections = [
 ]
 
 function SkillIcon({ Icon, color, bg, name }) {
+
+
     return (
         <motion.div
             className='flex flex-col items-center cursor-pointer'
@@ -91,13 +93,29 @@ export default function ScreenDevice({ y }) {
         springConfig
     )
 
+    const [isLargeScreen, setScreenSize] = useState(window.innerWidth >= 1000);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenSize(window.innerWidth >= 1000);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     return (
         <motion.div
             className='absolute flex items-center justify-center  drop-shadow-[5px_3px_10px_rgba(0,0,0,0.3)] z-1 '
 
             style={{
-                height: '20vw',
-                width: '30vw',
+
+                // height: '20vw',
+                // width: '30vw',
+
+                height: isLargeScreen ? '20vw' : '30vw',
+                width: isLargeScreen ? '30vw' : '45vw',
                 top: '50%',
                 left: '50%',
                 translate: '-50% -50%',
@@ -116,7 +134,7 @@ export default function ScreenDevice({ y }) {
                     style={{ background: '#141414', height: '90%', width: '90%' }}>
                     <div className='w-full h-full flex flex-col px-3 py-2 gap-[6px]'
                         style={{ fontSize: '1vw' }}
-                        // {/* ← this is the key: base font size scales with viewport */}
+                    // {/* ← this is the key: base font size scales with viewport */}
                     >
                         <div className='flex items-center gap-1 mb-[0.2em]'>
                             <span style={{ fontSize: '0.5em', fontWeight: 600, color: '#ffffff', letterSpacing: '0.04em' }}>

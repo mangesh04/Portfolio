@@ -1,6 +1,81 @@
 import React from 'react'
-import { motion, useTransform, easeInOut } from 'motion/react';
+import { motion, useTransform, easeInOut, easeOut } from 'motion/react';
+import { useEffect, useState } from "react";
+import svgPath from './svgPath.json'
+
 // import IntroName from './assets/introName.svg';
+
+
+
+
+
+function MyWay() {
+    return (
+        <div className="w-full h-full flex items-center justify-center mb-10">
+            <svg
+                width="480"
+                height="70"
+                viewBox="0 0 480 70"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="overflow-visible"
+            >
+                <defs>
+                    {/* soft shadow for better look */}
+                    {/* <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="2" stdDeviation="1.2" floodOpacity="0.25" />
+                    </filter> */}
+
+                    <mask
+                        id="hole-mask"
+                        maskUnits="userSpaceOnUse"
+                        x="0"
+                        y="0"
+                        width="480"
+                        height="70"
+                    >
+                        {/* white = visible */}
+                        <rect x="0" y="0" width="480" height="70" fill="white" />
+
+                        {/* black = erase */}
+                        <motion.path
+                            d={svgPath.mask}
+                            initial={{ pathLength: 1, pathOffset: 0 }}
+                            animate={{ pathLength: 0, pathOffset: 1 }}
+                            transition={{
+                                duration: 4.5, // smoother than 6
+                                ease: [0.25, 0.1, 0.25, 1], // better than "anticipate"
+                                ease: [0.65, 0, 0.35, 1]
+                            }}
+                            stroke="black"
+                            strokeWidth="5" // slightly bigger for clean erase
+                            fill="none"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </mask>
+                </defs>
+
+                <motion.path
+                    d={svgPath.name}
+                    fill="black"
+                    stroke="black"
+                    strokeWidth="0.1"
+                    mask="url(#hole-mask)"
+                    filter="url(#soft-shadow)"
+                    initial={{ opacity: 0.9 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                />
+            </svg>
+        </div>
+    );
+}
+
+
+
+
+
 
 export default function Intro() {
     return (
@@ -9,9 +84,9 @@ export default function Intro() {
                 Hi, I am
             </div>
 
-            <div className='text-6xl text-center text-[#333] mb-6 font-hw w-full flex items-center justify-center'>
-            Veerbhadra Panchal
-            </div>
+            {/* <HoleDiv /> */}
+            <MyWay />
+
 
             <div className='text-4xl font-bold text-center text-[#333] mb-10'>
                 a full stack developer

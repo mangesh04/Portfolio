@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react'
+import React, { use, useState, useEffect } from 'react'
 import { motion, spring, useSpring, useTransform } from 'motion/react';
 import laptop2 from './assets/laptop2.png'
 import instaLogo from './assets/instaLogo.png'
@@ -24,18 +24,20 @@ function Sticker({ src, alt, top, left, rotation, href }) {
                 onMouseLeave={() => setHovered(false)}
                 className="absolute h-15 cursor-pointer"
                 style={{
-                    top: `${top * 4}px`,
-                    left: `${left * 4}px`,
-                    rotate: `${rotation}deg`
+                    top: `${top }%`,
+                    left: `${left }%`,
+                    rotate: `${rotation}deg`,
+                    height: '5vw',
+                    width: '5vw'
                 }}
 
-                animate={{
-                    scale: hovered ? 1.1 : 1,
-                    y: hovered ? -6 : 0,
-                    rotate: hovered ? 0 : Number(rotation), // ← animates to straight
-                    filter: hovered
-                        ? 'drop-shadow(4px 10px 18px rgba(0,0,0,0.28))' : 'drop-shadow(2px 3px 6px rgba(0,0,0,0))', // - no shadow on resting pos
-                }}
+                // animate={{
+                //     scale: hovered ? 1.1 : 1,
+                //     y: hovered ? -6 : 0,
+                //     rotate: hovered ? 0 : Number(rotation), // ← animates to straight
+                //     filter: hovered
+                //         ? 'drop-shadow(4px 10px 18px rgba(0,0,0,0.28))' : 'drop-shadow(2px 3px 6px rgba(0,0,0,0))', // - no shadow on resting pos
+                // }}
 
                 transition={{ type: 'spring', stiffness: 300, damping: 22 }}
             /></a>
@@ -69,7 +71,7 @@ export default function laptop({ y }) {
 
     const laptopScale = useSpring(useTransform(y, laptopScaleTrack, [1, 1.3]), springConfig)
 
-    const zIndex = useTransform(laptopX, (value) => (value > 100 ? 1 : 0));
+    const zIndex = useTransform(y, (value) => (value > laptopRedyEnd ? 1 : 0));
 
 
     // const laptopX = useSpring(useTransform(y, laptopTrack, [0, 100, 100, 550]), springConfig)
@@ -90,11 +92,26 @@ export default function laptop({ y }) {
         gmail: { src: gmailLogo, alt: "Gmail", rotation: 10, top: 40, left: 40, href: "https://gmail.com" }
     }
 
+
+    const [isLargeScreen, setScreenSize] = useState(window.innerWidth >= 1000);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenSize(window.innerWidth >= 1000);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+
     return (
 
         <motion.div className={`absolute  flex items-center justify-center overflow-hidden drop-shadow-[2px_10px_5px_rgba(0,0,0,0.2)]`} style={{
-            height: '50vw',
-            width: '70vw',
+
+            height: isLargeScreen ? '30vw' : '50vw',
+            width: isLargeScreen ? '43vw' : '65vw',
             top: '50%',
             left: '50%',
             translate: '-50% -50%',
@@ -111,8 +128,13 @@ export default function laptop({ y }) {
 
             <div className=' absolute text-black   w-full h-full  flex top-10'>
 
-                <form action="" className='h-70 w-60 relative  border-white border-5 top-42 left-5 text-sm flex flex-col items-center justify-center gap-4 rounded-2xl bg-black text-white rotate-3 '>
-
+                <form action="" className='relative  border-white border-5 text-sm flex flex-col items-center justify-center gap-4 rounded-2xl bg-black text-white rotate-3 ' style={{
+                    height: '80%',
+                    width: '40%',
+                    // top: '20%',
+                    left: '10%',
+                }}>
+                    {/*
                     <h3>Contact me</h3>
 
                     <input type="text" placeholder='name' className='w-2/3 border-3 rounded-2xl pl-2 pb-1' />
@@ -123,10 +145,10 @@ export default function laptop({ y }) {
 
                     <textarea name="" id="" rows="2" placeholder='message' className='w-2/3 border-3 rounded-2xl pl-2 pb-1'></textarea>
 
-                    <button type='submit' className='border-3 rounded-3xl pl-8 pr-8 text-center cursor-pointer' >Submit</button>
+                    <button type='submit' className='border-3 rounded-3xl pl-8 pr-8 text-center cursor-pointer' >Submit</button> */}
                 </form>
 
-                <div className='relative h-70 w-60 top-40 left-10'>
+                <div className='relative h-70 w-60 top-[10%] left-[10%]'>
 
                     {Object.entries(logos).map(([key, logo]) => (
                         <Sticker

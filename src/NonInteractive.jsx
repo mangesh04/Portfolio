@@ -26,20 +26,21 @@ export default function NonInteractive({ y }) {
         <>
 
 
-            <motion.img src={mouse} alt="mouse" className='absolute w-140 -top-40 left-50 -rotate-20 drop-shadow-[7px_-7px_15px_rgba(0,0,0,0.3)]' style={{
+            {/* <motion.img src={mouse} alt="mouse" className='absolute w-140 -top-40 left-50 -rotate-20 drop-shadow-[7px_-7px_15px_rgba(0,0,0,0.3)]' style={{
                 // x: mouseX,
                 // y: mouseY
             }} />
+
+            <motion.img src={headphone} alt="headphone" className='absolute w-170 -top-40 -left-40 drop-shadow-[6px_10px_15px_rgba(0,0,0,0.3)]' style={{
+                // x: headphoneX,
+                // y: headphoneY
+            }} /> */}
 
             {/* <motion.img src={pencil} alt="pencil" className='absolute w-80 bottom-50 -left-20 -rotate-10 drop-shadow-[6px_10px_6px_rgba(0,0,0,0.3)]' style={{
                 // x: pencilX,
                 // y: pencilY
             }} /> */}
 
-            <motion.img src={headphone} alt="headphone" className='absolute w-170 -top-40 -left-40 drop-shadow-[6px_10px_15px_rgba(0,0,0,0.3)]' style={{
-                // x: headphoneX,
-                // y: headphoneY
-            }} />
 
         </>
     )

@@ -68,8 +68,12 @@ function App() {
 
 
         <CursorTrail />
+
         <Intro y={y} />
+
         <NonInteractive y={y} />
+
+        <Keyboard y={y} />
 
         <span className=" hidden md:block">
           <ScreenDevice y={y} />
@@ -87,7 +91,6 @@ function App() {
         </span>
 
         <Laptop y={y} />
-        <Keyboard y={y} />
       </div>
     </>
   )

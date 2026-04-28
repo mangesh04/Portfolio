@@ -9,9 +9,9 @@ export default function Keyboard({ y }) {
     const springConfig = { stiffness: 80, damping: 20, mass: 1 }
 
     const keyboardX = useSpring(useTransform(y, keyboardTrack, [10, -40]), springConfig)   // slide left
-    const keyboardY = useSpring(useTransform(y, keyboardTrack, [100, 300]), springConfig)
+    const keyboardY = useSpring(useTransform(y, keyboardTrack, [100, 420]), springConfig)
 
-    const keyboardRotate = useSpring(useTransform(y, keyboardRotateTrack, [3, 20, 20, -20]), springConfig) // rotate into place
+    const keyboardRotate = useSpring(useTransform(y, keyboardRotateTrack, [3, 20, 20, -5]), springConfig) // rotate into place
 
     return (
         <>

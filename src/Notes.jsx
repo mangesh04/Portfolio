@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react'
-import { motion, useTransform, useSpring } from 'motion/react';
+import { useEffect, useMemo, useState } from 'react'
+import { motion, useTransform, useSpring, m } from 'motion/react';
 import notes2 from './assets/notes.png'
 import cardImage from './assets/card-image.png'
 import sevensImage from './assets/sevens.png'
@@ -107,7 +107,7 @@ function SetCardImage({ image, name, rotation }) {
 function Popup({ project }) {
   const { dot } = statusColor[project.status]
   return (
-    <div className='absolute -left-5 top-0 ml-0 w-44 z-50 pointer-events-auto '
+    <div className='absolute -left-1 top-0 ml-0 w-44 z-50 pointer-events-auto '
       style={{ transformOrigin: 'top left' }}
     >
       <div className='bg-[#fffef8] border border-[#ddd9ce] rounded-lg shadow-lg p-3 flex flex-col gap-1.5'
@@ -253,15 +253,28 @@ export default function Notes({ y }) {
 
   const notesRotate = useSpring(useTransform(y, notesTrack, [65, 50, 40, 0, 0, 65]), springConfig)
 
-  const notesScale = useSpring(useTransform(y, notesScaleTrack, [0.8, 1.5, 1.5, 0.6]), springConfig)
+  const notesScale = useSpring(useTransform(y, notesScaleTrack, [1, 1.5, 1.5, 1]), springConfig)
+
+  const [isLargeScreen, setScreenSize] = useState(window.innerWidth >= 1000);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenSize(window.innerWidth >= 1000);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <motion.div
       className='absolute drop-shadow-[6px_10px_15px_rgba(0,0,0,0.3)] z-1'
       style={{
-        height: '30vw',
-        width: '35vw',
-        maxHeight: '90vh',
+
+        height: isLargeScreen ? '30vw' : '50vw',
+        width: isLargeScreen ? '35vw' : '65vw',
+
         top: '50%',
         left: '50%',
         translate: '-50% -50%',
@@ -273,9 +286,9 @@ export default function Notes({ y }) {
     >
       <img src={notes2} alt="notes" className='w-full h-full object-cover absolute inset-0' />
 
-      <div className='absolute inset-0 flex flex-col items-center justify-center overflow-visible'>
+      <div className='absolute inset-0 flex flex-col gap-[6%] items-center justify-center overflow-visible'>
 
-        <div className='font-hw2 relative  font-bold opacity-70'  >
+        <div className='font-hw2 relative  font-bold opacity-70 text-[160%]'  >
           Projects
         </div>
 
@@ -295,6 +308,6 @@ export default function Notes({ y }) {
           ))}
         </div>
       </div>
-    </motion.div>
+    </motion.div >
   )
 }
