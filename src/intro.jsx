@@ -12,6 +12,7 @@ import svgPath from './svgPath.json'
 function MyWay() {
     return (
         <div className="w-full h-full flex items-center justify-center mb-10">
+
             <svg
                 width="480"
                 height="70"
@@ -79,18 +80,18 @@ function MyWay() {
 
 export default function Intro() {
     return (
-        <div>
-            <div className='text-4xl text-center text-[#333] mb-10'>
-                Hi, I am
-            </div>
+        <div className='w-full flex flex-col justify-center px-4 relative top-40 '>
 
-            {/* <HoleDiv /> */}
             <MyWay />
 
-
-            <div className='text-4xl font-bold text-center text-[#333] mb-10'>
-                a full stack developer
+            <div className='text-3xl text-center text-[#333] mb-5 font-qurova'>
+                full stack developer
             </div>
+
+            <div className='text-center max-w-3xl flex items-center justify-center mx-auto text-lg text-[#555] mb-20 font-aqua'>
+                Full stack developer building good-looking, scalable web apps with the MERN stack and Python. I aim to integrate AI efficiently — squeezing the most out of it without burning budget. When I'm not working on serious stuff, I'm probably building a small game. Always interested in projects worth building.
+            </div>
+
         </div>
     )
 }

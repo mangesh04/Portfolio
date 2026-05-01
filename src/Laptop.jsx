@@ -24,20 +24,19 @@ function Sticker({ src, alt, top, left, rotation, href }) {
                 onMouseLeave={() => setHovered(false)}
                 className="absolute h-15 cursor-pointer"
                 style={{
-                    top: `${top }%`,
-                    left: `${left }%`,
+                    top: `${top*1.5}%`,
+                    left: `${left*1.5}%`,
                     rotate: `${rotation}deg`,
-                    height: '5vw',
-                    width: '5vw'
+                    height: '25%',
                 }}
 
-                // animate={{
-                //     scale: hovered ? 1.1 : 1,
-                //     y: hovered ? -6 : 0,
-                //     rotate: hovered ? 0 : Number(rotation), // ← animates to straight
-                //     filter: hovered
-                //         ? 'drop-shadow(4px 10px 18px rgba(0,0,0,0.28))' : 'drop-shadow(2px 3px 6px rgba(0,0,0,0))', // - no shadow on resting pos
-                // }}
+                animate={{
+                    scale: hovered ? 1.1 : 1,
+                    y: hovered ? -6 : 0,
+                    rotate: hovered ? 0 : Number(rotation), // ← animates to straight
+                    filter: hovered
+                        ? 'drop-shadow(4px 10px 18px rgba(0,0,0,0.28))' : 'drop-shadow(2px 3px 6px rgba(0,0,0,0))', // - no shadow on resting pos
+                }}
 
                 transition={{ type: 'spring', stiffness: 300, damping: 22 }}
             /></a>
@@ -63,13 +62,13 @@ export default function laptop({ y }) {
 
     const springConfig = { stiffness: 80, damping: 20, mass: 1 }
 
-    const laptopX = useSpring(useTransform(y, laptopTrack, [-700, -500, -500, 0]), springConfig)
+    const laptopX = useSpring(useTransform(y, laptopTrack, [-800, -500, -500, 0]), springConfig)
 
     const laptopY = useSpring(useTransform(y, laptopTrack, [100, 50, 50, 0]), springConfig)
 
-    const laptopRotate = useSpring(useTransform(y, laptopRotateTrack, [20, 0]), springConfig)
+    const laptopRotate = useSpring(useTransform(y, laptopRotateTrack, [30, 0]), springConfig)
 
-    const laptopScale = useSpring(useTransform(y, laptopScaleTrack, [1, 1.3]), springConfig)
+    const laptopScale = useSpring(useTransform(y, laptopScaleTrack, [0.8, 1.3]), springConfig)
 
     const zIndex = useTransform(y, (value) => (value > laptopRedyEnd ? 1 : 0));
 
@@ -110,8 +109,8 @@ export default function laptop({ y }) {
 
         <motion.div className={`absolute  flex items-center justify-center overflow-hidden drop-shadow-[2px_10px_5px_rgba(0,0,0,0.2)]`} style={{
 
-            height: isLargeScreen ? '30vw' : '50vw',
-            width: isLargeScreen ? '43vw' : '65vw',
+            height: isLargeScreen ? '30vw' : '40vw',
+            width: isLargeScreen ? '43vw' : '59vw',
             top: '50%',
             left: '50%',
             translate: '-50% -50%',

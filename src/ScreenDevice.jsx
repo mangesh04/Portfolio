@@ -77,14 +77,14 @@ export default function ScreenDevice({ y }) {
     const mobileScaleTrack = [scaleStart, scaleEnd, dScaleStart, dScaleEnd]
     const springConfig = { stiffness: 80, damping: 20, mass: 1 }
 
-    const rawX = useTransform(y, mobileTrack, [600, 0, 0, 600])
-    const rawY = useTransform(y, mobileTrack, [-300, 0, 0, -400])
+    const rawX = useTransform(y, mobileTrack, [500, 0, 0, 600])
+    const rawY = useTransform(y, mobileTrack, [-250, 0, 0, -400])
 
     const mobileX = useSpring(rawX, springConfig)
     const mobileY = useSpring(rawY, springConfig)
 
     const mobileRotate = useSpring(
-        useTransform(y, mobileTrack, [120, 0, 0, 120]),
+        useTransform(y, mobileTrack, [-130, 0, 0, 120]),
         springConfig
     )
 
