@@ -50,7 +50,7 @@ export default function CursorTrail() {
         }
         ctx.lineTo(pts[pts.length - 1].x, pts[pts.length - 1].y);
         ctx.strokeStyle = "#1a1a1a";
-        ctx.lineWidth = 4;
+        ctx.lineWidth = 2;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
         ctx.stroke();

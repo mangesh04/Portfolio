@@ -1,6 +1,6 @@
 import React, { use, useState, useEffect } from 'react'
 import { motion, spring, useSpring, useTransform } from 'motion/react';
-import laptop2 from './assets/laptop2.png'
+import laptop2 from './assets/laptop2 - copy.png'
 import instaLogo from './assets/instaLogo.png'
 import linkedinLogo from './assets/linkedinLogo.png'
 import githubLogo from './assets/githubLogo.png'
@@ -83,9 +83,9 @@ export default function laptop({ y }) {
 
         x: { src: xLogo, alt: "X", rotation: -8, top: 10, left: 40, href: "https://x.com" },
 
-        linkedin: { src: linkedinLogo, alt: "LinkedIn", rotation: 10, top: 25, left: 15, href: "https://linkedin.com" },
+        linkedin: { src: linkedinLogo, alt: "LinkedIn", rotation: 10, top: 25, left: 20, href: "https://linkedin.com" },
 
-        insta: { src: instaLogo, alt: "Instagram", rotation: -7, top: 50, left: 5, href: "https://instagram.com" },
+        insta: { src: instaLogo, alt: "Instagram", rotation: -7, top: 40, left: 0, href: "https://instagram.com" },
 
         gmail: { src: gmailLogo, alt: "Gmail", rotation: 10, top: 40, left: 40, href: "https://gmail.com" }
     }
@@ -107,8 +107,8 @@ export default function laptop({ y }) {
     return (
 
         <motion.div className={`absolute  flex items-center justify-center overflow-hidden drop-shadow-[2px_10px_5px_rgba(0,0,0,0.2)]`} style={{
-            height: 410,
-            width: 600,
+            height: 590,
+            width: 410,
             top: '50%',
             left: '50%',
             translate: '-50% -50%',
@@ -123,9 +123,9 @@ export default function laptop({ y }) {
 
             {/* blur-[0.3px] */}
 
-            <div className=' absolute text-black   w-full h-full  flex top-10'>
+            <div className=' absolute text-black w-full h-full  flex flex-col top-10 '>
 
-                <form action="" className='h-70 w-60 relative  border-white border-5 top-10 left-10 text-sm flex flex-col items-center justify-center gap-4 rounded-2xl bg-black text-white rotate-3 '>
+                <form action="" className='h-70 w-60 relative  border-white border-5 top-5 left-20 text-sm flex flex-col items-center justify-center gap-4 rounded-2xl bg-black text-white rotate-3 '>
 
                     <h3>Contact me</h3>
 
@@ -140,7 +140,7 @@ export default function laptop({ y }) {
                     <button type='submit' className='border-3 rounded-3xl pl-8 pr-8 text-center cursor-pointer' >Submit</button>
                 </form>
 
-                <div className='relative h-50 w-50 top-10 left-20'>
+                <div className='relative h-50 w-50 top-8 left-20'>
 
                     {Object.entries(logos).map(([key, logo]) => (
                         <Sticker

@@ -1,6 +1,6 @@
-import { useMemo, useState, useEffect } from 'react'
+import { useMemo, useState } from 'react'
 import { motion, useTransform, useSpring } from 'motion/react';
-import notes2 from './assets/notes.png'
+import notes2 from './assets/notes - Copy.png'
 import cardImage from './assets/card-image.png'
 import sevensImage from './assets/sevens.png'
 import desktopBuddy from './assets/desktopBuddy.png'
@@ -67,7 +67,7 @@ const statusColor = {
   'abandoned lol': { bg: 'bg-red-100', text: 'text-red-700', dot: 'bg-red-400' },
 }
 
-const CARD_W = 130
+const CARD_W = Math.min(130, window.innerWidth * 0.2)
 
 function SetCardImage({ image, name, rotation }) {
 
@@ -90,14 +90,14 @@ function SetCardImage({ image, name, rotation }) {
         alt=""
         style={{
           position: 'absolute',
-          top: '15px',
-          left: '8px',
+          top: '15%',
+          left: '8%',
           width: '86%',
           objectFit: 'cover',
           zIndex: 1,
         }}
       />
-      <span className='absolute text-sm top-17 w-27 flex items-center justify-center font-hw2'>
+      <span className='absolute text-[50%] top-[100%] left-[10%] font-hw2'>
         {name}
       </span>
     </div>
@@ -164,12 +164,14 @@ function ProjectCard({ project }) {
   const rotation = useMemo(() => (Math.random() * 6 - 3).toFixed(2), [])
 
   return (
+
     <div
-      className='relative'
-      style={{ width: CARD_W, height: '120px', flexShrink: 0 }}
+      className='relative m-0'
+      style={{ width: '110%', flexShrink: 0 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+
       {/* polaroid — straightens + floats on hover */}
       <motion.div
         className='font-hw2 text-3xl w-full h-full'
@@ -191,7 +193,6 @@ function ProjectCard({ project }) {
             left: 8,
             right: 8,
             bottom: 8,
-            padding: '10px',
             background: 'transparent',
             zIndex: 1,
             display: 'flex',
@@ -201,9 +202,13 @@ function ProjectCard({ project }) {
           }}
         >
           <SetCardImage image={project.image} name={project.name} rotation={0} />
+
         </div>
+
       </motion.div>
 
+
+      {/* popup div */}
       {hovered && (
         <motion.div
           className='absolute top-0 left-full ml-3 z-50'
@@ -212,13 +217,16 @@ function ProjectCard({ project }) {
           transition={{ duration: 0.18 }}
         >
           <Popup project={project} />
+
         </motion.div>
       )}
     </div>
   )
 }
 
-export default function Notes({ y }) {
+
+
+export default function Notes2({ y }) {
 
   const notesBackStart = 200
   const notesBackEnd = 400
@@ -240,32 +248,20 @@ export default function Notes({ y }) {
 
   const springConfig = { stiffness: 80, damping: 20, mass: 1 }
 
-  const notesY = useSpring(useTransform(y, notesTrack, [330, 500, 400, 0, 0, 300]), springConfig)
-  const notesX = useSpring(useTransform(y, notesTrack, [650, 700, 700, 0, 0, 600]), springConfig)
+  const notesX = useSpring(useTransform(y, notesTrack, [600, 700, 700, 0, 0, 600]), springConfig)
+  const notesY = useSpring(useTransform(y, notesTrack, [300, 500, 400, 0, 0, 300]), springConfig)
 
-  const notesRotate = useSpring(useTransform(y, notesTrack, [100, 120, 40, 0, 0, 65]), springConfig)
+  const notesRotate = useSpring(useTransform(y, notesTrack, [65, 50, 40, 0, 0, 65]), springConfig)
 
-  const notesScale = useSpring(useTransform(y, notesScaleTrack, [1, 1.5, 1.5, 1]), springConfig)
-
-  const [isLargeScreen, setScreenSize] = useState(window.innerWidth >= 1000);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenSize(window.innerWidth >= 1000);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
+  const notesScale = useSpring(useTransform(y, notesScaleTrack, [0.8, 1.5, 1.5, 0.6]), springConfig)
 
   return (
     <motion.div
-      className='absolute drop-shadow-[6px_10px_15px_rgba(0,0,0,0.3)]'
+      className='absolute drop-shadow-[6px_10px_15px_rgba(0,0,0,0.3)] z-1'
       style={{
-        height: 400,
-        width: 500,
+        height: '65vw',
+        width: '50vw',
+        maxHeight: '90vh',
         top: '50%',
         left: '50%',
         translate: '-50% -50%',
@@ -277,18 +273,19 @@ export default function Notes({ y }) {
     >
       <img src={notes2} alt="notes" className='w-full h-full object-cover absolute inset-0' />
 
+      <div className='absolute inset-0 flex flex-col items-center justify-center overflow-visible'>
 
-      <div className='absolute inset-0 flex flex-col gap-[6%] items-center justify-center overflow-visible'>
-
-        <div className='absolute  top-10  bottom-1/2 font-hw2 text-2xl font-bold opacity-70'>
+        <div className='font-hw2 relative  font-bold opacity-70'  >
           Projects
         </div>
 
         <div
           style={{
+            height: '60%',
+            width: '80%',
             display: 'grid',
-            gridTemplateColumns: `repeat(3, ${CARD_W}px)`,
-            gap: 12,
+            gridTemplateColumns: `repeat(3, ${30}%)`,
+            gap: '5%',
             padding: '6px 4px',
             overflow: 'visible',
           }}

@@ -4,10 +4,15 @@ import { useMotionValue } from 'motion/react'
 import Intro from './intro'
 import NonInteractive from './NonInteractive'
 import ScreenDevice from './ScreenDevice'
+import ScreenDevice2 from './ScreenDevice2'
 import Notes from './Notes'
+import Notes2 from './Notes2'
 import CursorTrail from './CursorTrail'
 import Laptop from './Laptop'
-
+import Laptop2 from './Laptop2'
+import Keyboard from './keyboard'
+import ReverseGame from './ReverseGameOfLife'
+import ChromeAIChat from './ChromeAIChat';
 
 function App() {
 
@@ -59,14 +64,40 @@ function App() {
 
   return (
     <>
+      {/* <ReverseGame text="Veer" /> */}
       <div className='mainContainer bg-[#f5f3f0] h-screen p-20 relative overflow-hidden overscroll-none touch-none'>
 
+
         <CursorTrail />
+
         <Intro y={y} />
+
         <NonInteractive y={y} />
-        <ScreenDevice y={y} />
-        <Notes y={y} />
-        <Laptop y={y} />
+
+        <Keyboard y={y} />
+
+        <span className=" hidden md:block">
+          <ScreenDevice y={y} />
+        </span>
+
+        <span className="block md:hidden">
+          <ScreenDevice2 y={y} />
+        </span>
+
+        <span className=" hidden md:block">
+          <Notes y={y} /></span>
+
+        <span className="block md:hidden">
+          <Notes2 y={y} />
+        </span>
+
+        <span className=" hidden md:block">
+          <Laptop y={y} />
+        </span>
+        <span className="block md:hidden">
+          <Laptop2 y={y} />
+        </span>
+
 
       </div>
     </>

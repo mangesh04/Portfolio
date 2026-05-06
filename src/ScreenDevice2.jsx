@@ -1,12 +1,10 @@
-import { motion, useTransform, useMotionTemplate, easeInOut, useSpring } from 'motion/react';
-import tablet from './assets/tablet2.png';
+import { motion, useTransform, useMotionTemplate, easeInOut, useSpring, m } from 'motion/react';
+import tablet from './assets/tablet2 - Copy.png';
 import { useState, useEffect } from 'react';
-// react-icons imports
 import { FaReact, FaNodeJs, FaPython, FaGitAlt, FaGithub, FaDatabase } from 'react-icons/fa'
 import { SiMongodb, SiExpress, SiTailwindcss, SiFramer } from 'react-icons/si'
 import { TbBrandVscode } from 'react-icons/tb'
 
-// Dark theme palette for icon tiles
 const sections = [
     {
         label: 'Frontend',
@@ -32,7 +30,6 @@ const sections = [
             { Icon: FaGitAlt, color: '#F05032', bg: '#3a1a18', name: 'Git' },
             { Icon: FaGithub, color: '#ffffff', bg: '#2a2a2a', name: 'GitHub' },
             { Icon: TbBrandVscode, color: '#007ACC', bg: '#1a2a3a', name: 'VSCode' },
-
         ],
     },
 ]
@@ -40,24 +37,30 @@ const sections = [
 function SkillIcon({ Icon, color, bg, name }) {
     return (
         <motion.div
-            className='flex flex-col items-center gap-[2px] cursor-pointer'
+            className='flex flex-col items-center cursor-pointer'
+            style={{ gap: '0.25em' }}
             whileHover={{ scale: 1.25, y: -2 }}
             transition={{ type: 'spring', stiffness: 400, damping: 15 }}
         >
             <div
                 className='flex items-center justify-center rounded-[5px] transition-shadow duration-200'
-                style={{ width: 22, height: 22, background: bg, boxShadow: `0 0 0px ${color}` }}
+                style={{
+                    width: '1.8em',
+                    height: '1.8em',
+                    background: bg,
+                    boxShadow: `0 0 0px ${color}`
+                }}
                 onMouseEnter={e => e.currentTarget.style.boxShadow = `0 0 6px 1px ${color}88`}
                 onMouseLeave={e => e.currentTarget.style.boxShadow = `0 0 0px ${color}`}
             >
-                <Icon size={13} color={color} />
+                <Icon style={{ width: '1.1em', height: '1.1em' }} color={color} />
             </div>
-            <span style={{ fontSize: 4.5, color: '#888', lineHeight: 1 }}>{name}</span>
+            <span style={{ fontSize: '0.45em', color: '#888', lineHeight: 1 }}>{name}</span>
         </motion.div>
     )
 }
 
-export default function ScreenDevice({ y }) {
+export default function ScreenDevice2({ y }) {
 
     const entryStart = 0
     const entryEnd = 200
@@ -72,14 +75,14 @@ export default function ScreenDevice({ y }) {
     const mobileScaleTrack = [scaleStart, scaleEnd, dScaleStart, dScaleEnd]
     const springConfig = { stiffness: 80, damping: 20, mass: 1 }
 
-    const rawX = useTransform(y, mobileTrack, [500, 0, 0, 600])
-    const rawY = useTransform(y, mobileTrack, [-250, 0, 0, -400])
+    const rawX = useTransform(y, mobileTrack, [600, 0, 0, 600])
+    const rawY = useTransform(y, mobileTrack, [-300, 0, 0, -400])
 
     const mobileX = useSpring(rawX, springConfig)
     const mobileY = useSpring(rawY, springConfig)
 
     const mobileRotate = useSpring(
-        useTransform(y, mobileTrack, [130, 0, 0, 120]),
+        useTransform(y, mobileTrack, [120, 0, 0, 120]),
         springConfig
     )
 
@@ -88,25 +91,13 @@ export default function ScreenDevice({ y }) {
         springConfig
     )
 
-    const [isLargeScreen, setScreenSize] = useState(window.innerWidth >= 1000);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setScreenSize(window.innerWidth >= 1000);
-        };
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
     return (
         <motion.div
-            className='absolute flex items-center justify-center  drop-shadow-[5px_3px_10px_rgba(0,0,0,0.3)] z-1'
+            className='absolute flex items-center justify-center  drop-shadow-[5px_3px_10px_rgba(0,0,0,0.3)] z-1 '
 
             style={{
-                height:280,
-                width:390,
+                height: '40vw',
+                width: '30vw',
                 top: '50%',
                 left: '50%',
                 translate: '-50% -50%',
@@ -117,51 +108,38 @@ export default function ScreenDevice({ y }) {
             }}
             transition={{ ease: easeInOut }}
         >
+            <img src={tablet} alt="tablet" className='w-full h-full' />
 
-            <img src={tablet} alt="tablet" className='w-full h-full object-cover absolute inset-0' />
-
-
-            {/* Screen container */}
             <div className='absolute text-black w-full h-full flex rounded-xl items-center justify-center'>
 
-                Main screen — rotated 90° to match tablet orientation
-
-                <div className='absolute rounded-xl h-50 w-75 overflow-hidden'
+                <div className='relative rounded-xl  overflow-hidden'
                     style={{ background: '#141414', height: '90%', width: '90%' }}>
-
-                    {/* Inner content */}
-                    <div className='w-full h-full flex flex-col px-3 py-2 gap-[6px]'>
-
-                        {/* Skills title */}
-                        <div className='flex items-center gap-1 mb-[2px]'>
-                            <span style={{ fontSize: 7, fontWeight: 600, color: '#ffffff', letterSpacing: '0.04em' }}>
+                    <div className='w-full h-full flex flex-col px-3 py-2 gap-[6px]'
+                        style={{ fontSize: '1vw' }}
+                        // {/* ← this is the key: base font size scales with viewport */}
+                    >
+                        <div className='flex items-center gap-1 mb-[0.2em]'>
+                            <span style={{ fontSize: '0.5em', fontWeight: 600, color: '#ffffff', letterSpacing: '0.04em' }}>
                                 My Skills
                             </span>
-                            <div style={{ flex: 1, height: 0.5, background: '#333', marginLeft: 3 }} />
+                            <div style={{ flex: 1, height: '0.05em', background: '#333', marginLeft: '0.3em' }} />
                         </div>
 
                         {sections.map((section) => (
                             <div key={section.label}>
-
-                                {/* Section label */}
-                                <p style={{ fontSize: 4.5, color: '#555', marginBottom: 3, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                                <p style={{ fontSize: '0.35em', color: '#555', marginBottom: '0.4em', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                                     {section.label}
                                 </p>
-
-                                {/* Icon row */}
-                                <div className='flex flex-row gap-2 flex-wrap'>
+                                <div className='flex flex-row flex-wrap' style={{ gap: '0.4em' }}>
                                     {section.icons.map(({ Icon, color, bg, name }) => (
                                         <SkillIcon key={name} Icon={Icon} color={color} bg={bg} name={name} />
                                     ))}
                                 </div>
-
-                                {/* Divider (skip last) */}
                                 {section.label !== 'Tools' && (
-                                    <div style={{ height: 0.5, background: '#222', margin: '4px 0 0' }} />
+                                    <div style={{ height: '0.05em', background: '#222', margin: '0.4em 0 0' }} />
                                 )}
                             </div>
                         ))}
-
                     </div>
                 </div>
             </div>

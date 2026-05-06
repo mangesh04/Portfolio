@@ -1,5 +1,31 @@
 @import "tailwindcss";
 
+
+
+@font-face {
+  font-family: "aqua";
+  src: url("./assets/fonts/aqua.ttf") format("truetype");
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-aqua: aqua, sans-serif;
+}
+
+
+
+@font-face {
+  font-family: "qurova";
+  src: url("./assets/fonts/QurovaDEMO-Light.otf") format("opentype");
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-qurova: qurova, sans-serif;
+}
+
 @font-face {
   font-family: "hw";
   src: url("./assets/fonts/Bellarina.otf") format("opentype");
