@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { motion, useTransform, useSpring } from 'motion/react';
-import notes2 from './assets/notes - Copy.png'
+import notes2 from './assets/notes-Copy.png'
 import cardImage from './assets/card-image.png'
 import sevensImage from './assets/sevens.png'
 import desktopBuddy from './assets/desktopBuddy.png'

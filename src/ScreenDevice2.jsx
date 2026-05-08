@@ -1,5 +1,5 @@
 import { motion, useTransform, useMotionTemplate, easeInOut, useSpring, m } from 'motion/react';
-import tablet from './assets/tablet2 - Copy.png';
+import tablet from './assets/tablet2-Copy.png';
 import { useState, useEffect } from 'react';
 import { FaReact, FaNodeJs, FaPython, FaGitAlt, FaGithub, FaDatabase } from 'react-icons/fa'
 import { SiMongodb, SiExpress, SiTailwindcss, SiFramer } from 'react-icons/si'
