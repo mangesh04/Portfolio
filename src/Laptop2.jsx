@@ -1,6 +1,6 @@
 import React, { use, useState, useEffect } from 'react'
 import { motion, spring, useSpring, useTransform } from 'motion/react';
-import laptop2 from './assets/laptop2-copy.png'
+import laptop2 from './assets/laptop2-Copy.png'
 import instaLogo from './assets/instaLogo.png'
 import linkedinLogo from './assets/linkedinLogo.png'
 import githubLogo from './assets/githubLogo.png'
