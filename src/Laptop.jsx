@@ -24,6 +24,7 @@ function Sticker({ src, alt, top, left, rotation, href }) {
                 onMouseLeave={() => setHovered(false)}
                 className="absolute h-15 cursor-pointer"
                 style={{
+                    height:70,
                     top: `${top * 4}px`,
                     left: `${left * 4}px`,
                     rotate: `${rotation}deg`

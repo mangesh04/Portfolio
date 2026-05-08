@@ -81,13 +81,13 @@ export default function laptop({ y }) {
     const logos = {
         github: { src: githubLogo, alt: "GitHub", rotation: 10, top: 3, left: 5, href: "https://github.com" },
 
-        x: { src: xLogo, alt: "X", rotation: -8, top: 10, left: 40, href: "https://x.com" },
+        x: { src: xLogo, alt: "X", rotation: -8, top: 7, left: 50, href: "https://x.com" },
 
-        linkedin: { src: linkedinLogo, alt: "LinkedIn", rotation: 10, top: 25, left: 20, href: "https://linkedin.com" },
+        linkedin: { src: linkedinLogo, alt: "LinkedIn", rotation: 10, top: 20, left: 25, href: "https://linkedin.com" },
 
-        insta: { src: instaLogo, alt: "Instagram", rotation: -7, top: 40, left: 0, href: "https://instagram.com" },
+        insta: { src: instaLogo, alt: "Instagram", rotation: -7, top: 30, left: 0, href: "https://instagram.com" },
 
-        gmail: { src: gmailLogo, alt: "Gmail", rotation: 10, top: 40, left: 40, href: "https://gmail.com" }
+        gmail: { src: gmailLogo, alt: "Gmail", rotation: 10, top: 35, left: 40, href: "https://gmail.com" }
     }
 
 
