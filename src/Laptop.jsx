@@ -80,15 +80,15 @@ export default function laptop({ y }) {
     // const zIndex = useTransform(laptopX, (value) => (value > 100 ? 1 : 0));
 
     const logos = {
-        github: { src: githubLogo, alt: "GitHub", rotation: 10, top: 3, left: 5, href: "https://github.com" },
+        github: { src: githubLogo, alt: "GitHub", rotation: 10, top: 3, left: 5, href: "https://github.com/mangesh04" },
 
-        x: { src: xLogo, alt: "X", rotation: -8, top: 10, left: 40, href: "https://x.com" },
+        x: { src: xLogo, alt: "X", rotation: -8, top: 10, left: 40, href: "https://x.com/veer_coder" },
 
-        linkedin: { src: linkedinLogo, alt: "LinkedIn", rotation: 10, top: 25, left: 15, href: "https://linkedin.com" },
+        linkedin: { src: linkedinLogo, alt: "LinkedIn", rotation: 10, top: 25, left: 15, href: "https://www.linkedin.com/in/veerbhadra-panchal-b98a2831b/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bxlj4XBm9Qn2am%2B8lm1kefQ%3D%3D" },
 
-        insta: { src: instaLogo, alt: "Instagram", rotation: -7, top: 50, left: 5, href: "https://instagram.com" },
+        insta: { src: instaLogo, alt: "Instagram", rotation: -7, top: 50, left: 5, href: "https://www.instagram.com/bitsetter/" },
 
-        gmail: { src: gmailLogo, alt: "Gmail", rotation: 10, top: 40, left: 40, href: "https://gmail.com" }
+        gmail: { src: gmailLogo, alt: "Gmail", rotation: 10, top: 40, left: 40, href: "mailto:veerpanchal4122@gmail.com" }
     }
 
 
