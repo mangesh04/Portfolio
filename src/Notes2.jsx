@@ -7,6 +7,7 @@ import desktopBuddy from './assets/desktopBuddy.png'
 import rps from './assets/rps.png'
 import tabdev from './assets/tabdev.png'
 import quoteGenetor from './assets/quoteGenerator.png'
+import bittorrent from './assets/bittorrent.png'
 
 const projects = [
 
