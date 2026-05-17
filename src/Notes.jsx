@@ -6,18 +6,30 @@ import sevensImage from './assets/sevens.png'
 import desktopBuddy from './assets/desktopBuddy.png'
 import rps from './assets/rps.png'
 import tabdev from './assets/tabdev.png'
+import bittorrent from './assets/bittorrent.png'
 import quoteGenetor from './assets/quoteGenerator.png'
 
 const projects = [
-  {
-    image: tabdev,
+
+{
+  image: tabdev,
     name: 'TabDev',
-    description: 'Browser tab manager with custom dev shortcuts.',
-    learned: 'Learned a ton about browser extension APIs.',
-    status: 'finished',
-    tags: ['React', 'Chrome API'],
-    live: 'https://your-live-link.com',
-    github: 'https://github.com/your-repo',
+    description: 'A browser extension that generates JavaScript with AI and injects it into the browser to build custom widgets, features, and automations using the userScript API.',
+    learned: '',
+    status: 'in progress',
+    tags: ['React', 'Chrome API', 'Gemini API'],
+    live: null,
+    github: 'https://github.com/mangesh04/tabDev',
+  },
+  {
+    image: bittorrent,
+    name: 'BitTorrent Client',
+    description: 'A BitTorrent client built in Python using asyncio and raw sockets.',
+    learned: '',
+    status: 'in progress',
+    tags: ['Python', 'asyncio', 'Sockets'],
+    live: null,
+    github: 'https://github.com/mangesh04/bittorrent',
   },
   {
     image: sevensImage,
@@ -26,8 +38,8 @@ const projects = [
     learned: 'First time syncing state across clients.',
     status: 'finished',
     tags: ['React', 'Node', 'Socket.io'],
-    live: 'https://your-live-link.com',
-    github: 'https://github.com/your-repo',
+    live: 'https://sevens-card-game.vercel.app/',
+    github: 'https://github.com/mangesh04/sevens-card-game',
   },
   {
     image: quoteGenetor,
@@ -36,18 +48,18 @@ const projects = [
     learned: 'Canvas API is more powerful than expected.',
     status: 'finished',
     tags: ['React', 'Canvas'],
-    live: 'https://your-live-link.com',
-    github: 'https://github.com/your-repo',
+    live: null,
+    github: 'https://github.com/mangehs04',
   },
   {
     image: desktopBuddy,
     name: 'Desktop Buddy',
-    description: 'A persistent desktop app with a mini game launcher.',
+    description: 'A cute desktop buddy to sudy with have pomodoro timer and  mini games.',
     learned: 'Raylib is surprisingly fun for quick GUIs.',
     status: 'in progress',
     tags: ['C++', 'Raylib'],
     live: null,
-    github: 'https://github.com/your-repo',
+    github: 'https://github.com/mangesh04/DeskBuddy',
   },
   {
     image: rps,
@@ -90,7 +102,7 @@ function SetCardImage({ image, name, rotation }) {
         alt=""
         style={{
           position: 'absolute',
-          top: '15px',
+          top: '10px',
           left: '8px',
           width: '86%',
           objectFit: 'cover',

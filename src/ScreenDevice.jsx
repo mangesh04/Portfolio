@@ -124,7 +124,7 @@ export default function ScreenDevice({ y }) {
             {/* Screen container */}
             <div className='absolute text-black w-full h-full flex rounded-xl items-center justify-center'>
 
-                Main screen — rotated 90° to match tablet orientation
+                {/* Main screen — rotated 90° to match tablet orientation */}
 
                 <div className='absolute rounded-xl h-50 w-75 overflow-hidden'
                     style={{ background: '#141414', height: '90%', width: '90%' }}>
