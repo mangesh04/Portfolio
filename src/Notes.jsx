@@ -11,11 +11,11 @@ import quoteGenetor from './assets/quoteGenerator.png'
 
 const projects = [
 
-{
-  image: tabdev,
+  {
+    image: tabdev,
     name: 'TabDev',
     description: 'A browser extension that generates JavaScript with AI and injects it into the browser to build custom widgets, features, and automations using the userScript API.',
-    learned: '',
+    learned: 'Learned how to work with browser extension APIs, AI code generation, and dynamically injecting scripts into web pages using the userScript API.',
     status: 'in progress',
     tags: ['React', 'Chrome API', 'Gemini API'],
     live: null,
@@ -25,7 +25,7 @@ const projects = [
     image: bittorrent,
     name: 'BitTorrent Client',
     description: 'A BitTorrent client built in Python using asyncio and raw sockets.',
-    learned: '',
+    learned: 'Learned how the BitTorrent protocol works under the hood, and got hands-on experience with asyncio and raw socket programming in Python.',
     status: 'in progress',
     tags: ['Python', 'asyncio', 'Sockets'],
     live: null,
