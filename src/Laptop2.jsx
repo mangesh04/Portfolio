@@ -61,13 +61,13 @@ export default function laptop({ y }) {
 
     const springConfig = { stiffness: 80, damping: 20, mass: 1 }
 
-    const laptopX = useSpring(useTransform(y, laptopTrack, [-800, -500, -500, 0]), springConfig)
+    const laptopX = useSpring(useTransform(y, laptopTrack, [-300, -200, -200, 0]), springConfig)
 
     const laptopY = useSpring(useTransform(y, laptopTrack, [100, 50, 50, 0]), springConfig)
 
     const laptopRotate = useSpring(useTransform(y, laptopRotateTrack, [30, 0]), springConfig)
 
-    const laptopScale = useSpring(useTransform(y, laptopScaleTrack, [0.8, 1.3]), springConfig)
+    const laptopScale = useSpring(useTransform(y, laptopScaleTrack, [0.5, 0.8]), springConfig)
 
     const zIndex = useTransform(y, (value) => (value > laptopRedyEnd ? 1 : 0));
 

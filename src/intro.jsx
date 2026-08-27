@@ -14,12 +14,11 @@ function MyWay() {
         <div className="w-full h-full flex items-center justify-center mb-10">
 
             <svg
-                width="480"
-                height="70"
                 viewBox="0 0 480 70"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="overflow-visible"
+                // className="overflow-visible"
+                className="overflow-visible w-full min-w-[350px] max-w-[480px] h-auto px-4"
             >
                 <defs>
                     {/* soft shadow for better look */}
@@ -80,11 +79,11 @@ function MyWay() {
 
 export default function Intro() {
     return (
-        <div className='w-full flex flex-col justify-center px-4 relative top-30 '>
+        <div className='w-full flex flex-col justify-center px-4 relative sm:top-30 top-15'>
 
             <MyWay />
 
-            <div className='text-3xl text-center text-[#333] mb-5 font-qurova'>
+            <div className='sm:text-3xl text-xl text-center text-[#333] mb-5 font-qurova'>
                 full stack developer
             </div>
 

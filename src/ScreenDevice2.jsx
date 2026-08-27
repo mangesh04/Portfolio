@@ -75,19 +75,19 @@ export default function ScreenDevice2({ y }) {
     const mobileScaleTrack = [scaleStart, scaleEnd, dScaleStart, dScaleEnd]
     const springConfig = { stiffness: 80, damping: 20, mass: 1 }
 
-    const rawX = useTransform(y, mobileTrack, [600, 0, 0, 600])
-    const rawY = useTransform(y, mobileTrack, [-300, 0, 0, -400])
+    const rawX = useTransform(y, mobileTrack, [250, 0, 0, 250])
+    const rawY = useTransform(y, mobileTrack, [-300, 0, 0, -300])
 
     const mobileX = useSpring(rawX, springConfig)
     const mobileY = useSpring(rawY, springConfig)
 
     const mobileRotate = useSpring(
-        useTransform(y, mobileTrack, [120, 0, 0, 120]),
+        useTransform(y, mobileTrack, [-30, 0, 0, -30]),
         springConfig
     )
 
     const mobileScale = useSpring(
-        useTransform(y, mobileScaleTrack, [1, 2, 2, 1]),
+        useTransform(y, mobileScaleTrack, [1.2, 3, 3, 1.2]),
         springConfig
     )
 
@@ -116,7 +116,7 @@ export default function ScreenDevice2({ y }) {
                     style={{ background: '#141414', height: '90%', width: '90%' }}>
                     <div className='w-full h-full flex flex-col px-3 py-2 gap-[6px]'
                         style={{ fontSize: '1vw' }}
-                        // {/* ← this is the key: base font size scales with viewport */}
+                    // {/* ← this is the key: base font size scales with viewport */}
                     >
                         <div className='flex items-center gap-1 mb-[0.2em]'>
                             <span style={{ fontSize: '0.5em', fontWeight: 600, color: '#ffffff', letterSpacing: '0.04em' }}>

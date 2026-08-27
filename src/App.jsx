@@ -65,7 +65,7 @@ function App() {
   return (
     <>
       {/* <ReverseGame text="Veer" /> */}
-      <div className='mainContainer bg-[#f5f3f0] h-screen p-20 relative overflow-hidden overscroll-none touch-none'>
+      <div className='mainContainer bg-[#f5f3f0] h-screen sm:p-30 p-10 relative overflow-hidden overscroll-none touch-none'>
 
 
         <CursorTrail />

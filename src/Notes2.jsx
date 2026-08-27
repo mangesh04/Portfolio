@@ -261,12 +261,12 @@ export default function Notes2({ y }) {
 
   const springConfig = { stiffness: 80, damping: 20, mass: 1 }
 
-  const notesX = useSpring(useTransform(y, notesTrack, [600, 700, 700, 0, 0, 600]), springConfig)
-  const notesY = useSpring(useTransform(y, notesTrack, [300, 500, 400, 0, 0, 300]), springConfig)
+  const notesX = useSpring(useTransform(y, notesTrack, [250, 300, 300, 0, 0, 250]), springConfig)
+  const notesY = useSpring(useTransform(y, notesTrack, [200, 300, 300, 0, 0, 200]), springConfig)
 
-  const notesRotate = useSpring(useTransform(y, notesTrack, [65, 50, 40, 0, 0, 65]), springConfig)
+  const notesRotate = useSpring(useTransform(y, notesTrack, [50, 50, 40, 0, 0, 20]), springConfig)
 
-  const notesScale = useSpring(useTransform(y, notesScaleTrack, [0.8, 1.5, 1.5, 0.6]), springConfig)
+  const notesScale = useSpring(useTransform(y, notesScaleTrack, [0.8, 1.8, 1.8, 0.8]), springConfig)
 
   return (
     <motion.div
