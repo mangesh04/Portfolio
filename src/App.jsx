@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css'
 import { useMotionValue } from 'motion/react'
 import Intro from './intro'
@@ -9,14 +9,50 @@ import Notes from './Notes'
 import Notes2 from './Notes2'
 import CursorTrail from './CursorTrail'
 import Laptop from './Laptop'
-import Laptop2 from './Laptop2'
 import Keyboard from './keyboard'
 import ReverseGame from './ReverseGameOfLife'
 import ChromeAIChat from './ChromeAIChat';
 
+// Resolves true once every <img> currently in the page has loaded AND decoded
+// (or after timeoutMs, so the loader can never hang forever).
+function useAllImagesLoaded(timeoutMs = 10000) {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const waits = Array.from(document.images).map((img) =>
+      img.decode
+        ? img.decode().catch(() => { })
+        : new Promise((res) => {
+          if (img.complete) res();
+          else img.onload = img.onerror = res;
+        })
+    );
+    const timeout = new Promise((res) => setTimeout(res, timeoutMs));
+
+    Promise.race([Promise.all(waits), timeout]).then(() => {
+      if (!cancelled) setReady(true);
+    });
+
+    return () => { cancelled = true; };
+  }, [timeoutMs]);
+
+  return ready;
+}
+
 function App() {
 
   const y = useMotionValue(0)
+
+  const [loading, setLoading] = useState(true);
+  const lockedRef = useRef(true);          // blocks scrolling while the loader is visible
+  const imagesReady = useAllImagesLoaded();
+
+  const handleLoaderFinish = () => {
+    lockedRef.current = false;
+    setLoading(false);
+  };
 
   useEffect(() => {
 
@@ -38,6 +74,7 @@ function App() {
     };
 
     const handleWheel = (e) => {
+      if (lockedRef.current) return;
       clamp(y.get() + e.deltaY);
     };
 
@@ -46,6 +83,7 @@ function App() {
     };
 
     const handleTouchMove = (e) => {
+      if (lockedRef.current) return;
       const delta = touchStartY - e.touches[0].clientY; // inverted: swipe up = scroll down
       touchStartY = e.touches[0].clientY;
       clamp(y.get() + delta);
@@ -64,9 +102,8 @@ function App() {
 
   return (
     <>
-      {/* <ReverseGame text="Veer" /> */}
-      <div className='mainContainer bg-[#f5f3f0] h-screen sm:p-30 p-10 relative overflow-hidden overscroll-none touch-none'>
-
+      {/* The page stays mounted UNDER the loader so its images download while the loader plays */}
+      <div className='mainContainer bg-[#f5f3f0] h-screen p-20 relative overflow-hidden overscroll-none touch-none'>
 
         <CursorTrail />
 
@@ -91,15 +128,16 @@ function App() {
           <Notes2 y={y} />
         </span>
 
-        <span className=" hidden md:block">
-          <Laptop y={y} />
-        </span>
-        <span className="block md:hidden">
-          <Laptop2 y={y} />
-        </span>
-
-
+        <Laptop y={y} />
       </div>
+
+      {loading && (
+        <ReverseGame
+          text="Welcome"
+          ready={imagesReady}
+          onFinish={handleLoaderFinish}
+        />
+      )}
     </>
   )
 }
