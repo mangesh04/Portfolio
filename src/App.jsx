@@ -9,9 +9,9 @@ import Notes from './Notes'
 import Notes2 from './Notes2'
 import CursorTrail from './CursorTrail'
 import Laptop from './Laptop'
+import Laptop2 from './Laptop2'
 import Keyboard from './keyboard'
 import ReverseGame from './ReverseGameOfLife'
-import ChromeAIChat from './ChromeAIChat';
 
 // Resolves true once every <img> currently in the page has loaded AND decoded
 // (or after timeoutMs, so the loader can never hang forever).
@@ -128,7 +128,13 @@ function App() {
           <Notes2 y={y} />
         </span>
 
-        <Laptop y={y} />
+        <span className=" hidden md:block">
+          <Laptop y={y} />
+        </span>
+        <span className="block md:hidden">
+          <Laptop2 y={y} />
+        </span>
+
       </div>
 
       {loading && (
