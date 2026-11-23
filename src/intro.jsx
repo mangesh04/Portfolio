@@ -43,6 +43,7 @@ function MyWay() {
                             initial={{ pathLength: 1, pathOffset: 0 }}
                             animate={{ pathLength: 0, pathOffset: 1 }}
                             transition={{
+                                delay: 3,
                                 duration: 4.5, // smoother than 6
                                 ease: [0.25, 0.1, 0.25, 1], // better than "anticipate"
                                 ease: [0.65, 0, 0.35, 1]

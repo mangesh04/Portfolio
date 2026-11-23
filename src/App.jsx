@@ -9,7 +9,7 @@ import Notes from './Notes'
 import Notes2 from './Notes2'
 import CursorTrail from './CursorTrail'
 import Laptop from './Laptop'
-import Laptop2 from './Laptop2'
+import Laptop2   from './Laptop2'
 import Keyboard from './keyboard'
 import ReverseGame from './ReverseGameOfLife'
 
